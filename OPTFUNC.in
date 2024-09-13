@@ -1,0 +1,24 @@
+#######################################################################
+#                                                                     #
+#                    O P T I M I Z A T I O N                          #
+#                                                                     #
+#######################################################################
+
+-- Reservoir simulator
+SIMULATOR
+  ECLIPSE /
+
+-- Objective Function NPV
+-- Penalizing gas (FGPT) and water production (FWPT)
+OPTFUNC
+--Comp   Domain   Price            Disc
+FOPT   FIELD   314.5      0.1   /
+FGPT   FIELD    -0.15032     0.1   /
+FWPT   FIELD    -37.7      0.1   /
+FWIT      FIELD    -37.7     0.1   /  --   6   $/bbl * 6.289811 bbl/m^3 
+WLUC              -4921.26          /  -- 1500   $/ft * 3.28084 ft/m 
+WVUC               -1640.42         /  -- 500   $/ft * 3.28084 ft/m
+WDRC               -4e+7             /  -- 1     M$ per location of drilling rig 
+/
+
+END

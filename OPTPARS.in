@@ -1,0 +1,112 @@
+#######################################################################
+#                                                                     #
+#                    O P T I M I Z A T I O N                          #
+#                                                                     #
+#######################################################################
+
+-- Reservoir simulator
+SIMULATOR
+  ECLIPSE /
+
+OPTPARS
+--CTRL     DOMN       LOWR       UPPR          DPRT
+  WLHX      INJ1     424  8268  2*   53 /
+  WLHY      INJ1     424  8268  2*   53 /
+  WLHZ      INJ1     1524   1646   2*   3.05 /
+  WLTX      INJ1     424  8268  2*   53 /
+  WLTY      INJ1     424  8268  2*   53 /
+  WLTZ      INJ1     1524   1646   2*   3.05 /
+--
+  WLHX      INJ2     424  8268  2*   53 /
+  WLHY      INJ2     424  8268  2*   53 /
+  WLHZ      INJ2     1524   1646   2*   3.05 /
+  WLTX      INJ2     424  8268  2*   53 /
+  WLTY      INJ2     424  8268  2*   53 /
+  WLTZ      INJ2     1524   1646   2*   3.05 /
+--
+  WLHX      INJ3     424  8268  2*   53 /
+  WLHY      INJ3     424  8268  2*   53 /
+  WLHZ      INJ3     1524   1646   2*   3.05 /
+  WLTX      INJ3     424  8268  2*   53 /
+  WLTY      INJ3     424  8268  2*   53 /
+  WLTZ      INJ3     1524   1646   2*   3.05 /
+--
+  WLHX      INJ4     424  8268  2*   53 /
+  WLHY      INJ4     424  8268  2*   53 /
+  WLHZ      INJ4     1524   1646   2*   3.05 /
+  WLTX      INJ4     424  8268  2*   53 /
+  WLTY      INJ4     424  8268  2*   53 /
+  WLTZ      INJ4     1524   1646   2*   3.05 /
+
+/
+
+
+OPTMAP
+--          |        Weights of objectives       |
+--          |    fixed          varying          |
+--     Type | feas   proj    init  loB   upB     |   app
+ PROJECTION    50      1     0.75  0.5   0.99        WELL
+--
+--  Alternating projection options
+--    ALGR: random order of the projections
+--    ALGJ: reject solution if it increases total infeasibility
+--    ALGW (...): alternation among wells: constraint index
+--    ALGI (15): maximum number of alternating projection iterations
+--    ALGM (0.01, 10): minimum relative improvement and improvement interval
+--    ALGF (...): option for the final run: not used - all, 0 - skip, 1,... - constraint
+--    ALGT (0.01): maximum relative error to initiate the final run
+--
+--    ALGJ   ALGR   ALGM 0.01 5   ALGI 10
+      ALGI 30  ALGT 0.00001 ALGR
+--
+--  SNOPT options
+--    NLPC: activate non-linear constraint treatment
+--    NLPD: debugging mode (no user requested termination and keeping logs)
+--    NLPS (2): SNOPT maximum update step
+--    NLPF: terminate on feasible solution
+--    NLPM (0.01, 10): SNOPT minimum relative improvement and improvement interval
+--    NLPI (15): SNOPT maximum number of iterations
+--    NLPE (30000): SNOPT maximum number of function evaluations
+--    NLPT (1e-6): SNOPT optimality tolerance
+--
+--    NLPE 10   NLPM 0.01  NLPT 1e-3   NLPS 2
+      NLPI 12  NLPT 1e-2   NLPS 2
+--
+--  Perturbation options
+--    PTBT (1): Maximum constraint infeasibility to trigger perturbation
+--    PTBE (3): Frequency of perturbation iterations
+--    PTBP (10): Perturbation population size
+--    PTBS (1): Maximum perturbation step
+--
+    PTBT 1 PTBE 3   PTBP 10   PTBS 258
+--
+--  Constraints and bounds
+--    Default lower bound constraint
+--      WTBD: well-to-boundary distance
+--      WTTB: well to the top/bottom boundary distance
+--      WTPD: well to the perimeter boundary distance
+--      WDRP: well drop (z-coordinate difference between heel and toe)
+--      WTWD: inter-well distance
+--      NFCV: no-fault-crossing violation
+--    Default upper bound constraint
+--      WLEN: well length
+--      HTNH: heel to network neighboring heels distance
+--
+    WLEN 480 1200  WTWD 720 WDRP -1e-5 1e-5/
+/
+
+--OPTMAP
+-- PROJECTION  10   0.75   0.5   0.99   WELL  ALGI 30     NLPI 12   NLPO 1e-2   NLPS 2    PTBE 5    PTBP 10   PTBS 24  WLEN  1600  WLLB 640 WTWD 960 WTPD 960 /
+--/    
+
+
+-- Options for output
+OPTFOUT
+  WELSPECS
+  COMPORD
+  COMPDAT
+  WCONPROD
+  WCONINJE
+/
+
+END

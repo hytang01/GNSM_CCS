@@ -1,0 +1,203 @@
+
+-- =============================================================================
+-- Definition of optimization problem
+-- =============================================================================
+
+problem_name
+Template_for_CO2Eclipse_python_PSU_xyz_wp_projection
+/
+
+
+number_of_objectives
+1
+/
+
+number_of_constraints
+1
+/
+
+FEASIBILITY_CRITERION
+1e-5
+/
+
+constraint_handling_type
+STATIC_PENALTY
+/
+
+constraint_handling_penalty_parameter
+0.0
+/
+
+optimization_setup
+MODEL
+/
+
+initial_random_seed
+155967045
+/
+
+initial_seed_solutions
+YES initial_solutions.in 590
+--NO
+/
+
+-- =============================================================================
+-- Particle Swarm Optimization options 
+-- =============================================================================
+
+pso_swarm_size
+590
+/
+
+pso_w
+0.721
+/
+
+pso_c1
+1.655
+/
+
+pso_c2
+1.655
+/
+
+pso_swarm_connectivity_index
+21
+/
+
+pso_personalBest_array_size
+1
+/
+
+pso_mutation_rate
+0.1
+/
+
+pso_neighbourhood_type
+1
+/
+
+gbest_index
+0
+/
+
+
+-- =============================================================================
+-- Genetic Algorithm options 
+-- =============================================================================
+
+-- has to be multiple of 4
+ga_pop_size
+32
+/
+
+niching_ga_desired
+YES
+/
+
+niching_parameter_ga
+0.1
+/
+
+ga_crossover_probability
+0.90
+/
+
+ga_mutation_prob_binary_variables
+0.1
+/
+
+ga_mutation_prob_real_coded_variables
+0.2
+/
+
+ga_sbx_index
+20
+/
+
+ga_polynomial_mutation_index
+20
+/
+
+ga_initial_seed
+0.1
+/
+
+-- =============================================================================
+-- Improved Latin Hypercube Sampling options 
+-- =============================================================================
+
+ilhs_pop_size
+30
+/
+
+ilhs_exponent
+0.791684
+/
+
+-- =============================================================================
+-- Differential Evolution options 
+-- =============================================================================
+
+de_popsize
+44
+/
+
+-- mutation factor
+de_f_factor
+0.5
+/
+
+-- recombination rate
+de_crossover_factor
+0.5
+/
+
+de_strategy
+6
+/
+
+-- =============================================================================
+-- System variables related to the problem 
+-- =============================================================================
+
+number_of_tasks
+80
+/
+
+execution_mode
+--gnu_parallel_mode
+mpiexec_mode
+--serial_mode
+--pbs_mode
+--slurm_mode
+/
+
+--dynamic_proxy
+-- starting        pattern        proxy ratio    algorithm
+-- iteration                       in pattern 
+--         3          fluctuate          0.7           ANN        
+--       1          constant           0.7    
+--       3          stepwise           0.7   
+--/
+
+
+maximum_job_timeout_in_seconds
+8000
+/
+
+-- =============================================================================
+-- Algorithm 
+-- =============================================================================
+
+algorithm_script
+--algo_name de algo_termination_criterion improvement 1 variables all /
+algo_name pso algo_termination_criterion cycles 0 variables all /
+--algo_name pso algo_termination_criterion improvement 1 variables all /
+--algo_name rga algo_termination_criterion generations 100 variables all /
+--algo_name ilhs algo_termination_criterion improvement 1 variables all /
+/
+
+--improvement_interval
+--20/
+
