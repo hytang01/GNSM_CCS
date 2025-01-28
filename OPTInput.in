@@ -4,7 +4,7 @@
 -- =============================================================================
 
 problem_name
-Template_for_CO2Eclipse_python_PSU_xyz_wp_projection
+Template_for_GNN_CO2Eclipse_python_PSU_xyz_wp_projection
 /
 
 
@@ -13,7 +13,7 @@ number_of_objectives
 /
 
 number_of_constraints
-1
+2
 /
 
 FEASIBILITY_CRITERION
@@ -37,8 +37,8 @@ initial_random_seed
 /
 
 initial_seed_solutions
-YES initial_solutions.in 590
---NO
+--YES initial_solutions.in 590
+NO
 /
 
 -- =============================================================================
@@ -140,7 +140,7 @@ ilhs_exponent
 -- =============================================================================
 
 de_popsize
-44
+24
 /
 
 -- mutation factor
@@ -154,7 +154,7 @@ de_crossover_factor
 /
 
 de_strategy
-6
+8
 /
 
 -- =============================================================================
@@ -162,13 +162,13 @@ de_strategy
 -- =============================================================================
 
 number_of_tasks
-80
+1
 /
 
 execution_mode
 --gnu_parallel_mode
-mpiexec_mode
---serial_mode
+--mpiexec_mode
+serial_mode
 --pbs_mode
 --slurm_mode
 /
@@ -191,13 +191,14 @@ maximum_job_timeout_in_seconds
 -- =============================================================================
 
 algorithm_script
---algo_name de algo_termination_criterion improvement 1 variables all /
-algo_name pso algo_termination_criterion cycles 0 variables all /
+--algo_name de algo_termination_criterion generations 100 variables all /
+algo_name de algo_termination_criterion improvement 1 variables all /
+--algo_name de algo_termination_criterion cycles 1 variables all /
 --algo_name pso algo_termination_criterion improvement 1 variables all /
 --algo_name rga algo_termination_criterion generations 100 variables all /
 --algo_name ilhs algo_termination_criterion improvement 1 variables all /
 /
 
---improvement_interval
---20/
+improvement_interval
+20/
 
