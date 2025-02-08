@@ -80,7 +80,7 @@ def main(argv):
     oak_address = os.getcwd()
     # load dynamic data for each simulation run
     root = os.getcwd()
-    raw_dir = root #+ 'raw'
+    raw_dir = root
 
     # generate connectivity list
     grids = [82,82,20]
@@ -193,14 +193,12 @@ def main(argv):
 
     finished_trial = []
     # model_name_base ='Main_V3_presGNN_30X50_new_loss_trials_No.'
-    model_path_base = '/home/groups/lou/hytang/SIMGNN_3d_structured_ccus_Illinois_final_no_pss/saved_models/satgnn/'
+    model_path_base = root
 
     if is_sat:
         index = 1
     else:
         index = 0
-
-    save_folder = '/home/groups/lou/hytang/SIMGNN_checkpoint/3d_ccus_illinois_final_no_pss/satgnn/'
     choices = {
                    'hidden':len(config['hidden_sizes']),
                     'latent':len(config['latent_sizes']),
@@ -296,14 +294,13 @@ def main(argv):
     pres_model_list = []
     finished_trial = []
     # model_name_base ='Main_V3_presGNN_30X50_new_loss_trials_No.'
-    model_path_base = '/home/groups/lou/hytang/SIMGNN_3d_structured_ccus_Illinois_final_no_pss/saved_models/presgnn/'
+    model_path_base = root
 
     if is_sat:
         index = 1
     else:
         index = 0
 
-    save_folder = '/home/groups/lou/hytang/SIMGNN_checkpoint/3d_ccus_illinois_final_no_pss/presgnn/'
     choices = {
                    'hidden':len(config['hidden_sizes']),
                     'latent':len(config['latent_sizes']),
@@ -553,9 +550,6 @@ def main(argv):
 
         BHP_features['INJ4'][realization_idx].append(processed_feature)
         
-    # Directory to save models
-    save_dir = "/home/groups/lou/hytang/SIMGNN_3d_structured_ccus_Illinois_final_no_pss/visualizations/saved_models"
-    os.makedirs(save_dir, exist_ok=True)
 
 
     # Load your data
