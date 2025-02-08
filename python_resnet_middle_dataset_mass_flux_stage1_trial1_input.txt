@@ -1,0 +1,24 @@
+[2] #num_hidden_layers, must be same dim as next line
+[[128,128]] #hidden_sizes
+[15] #num_message_passing_steps
+[32] #latent_sizes
+[[0.03,0.01]] #noise: first is std for pressure and second is std for saturation
+[[[1.0,0.1],[1.0,0.1]]] #loss_weight: [[alpha1,alpha2], [beta1,beta2]] alpha for cell loss, beta for well loss, 1 for mse, 2 for mae
+[0.0003] #learning_rate
+['add'] #aggr_choice: add, mean, max
+[2] #message_choice: -1, 0, 1, 2
+[2] #processor_choice: 0, 1, 2
+['leakyrelu'] #activation_type: relu, elu, leakyrelu
+['None'] #group_norm_choice: None, Processor, MLP
+[False,0.3,0.3] #is_waterfront_loss, threshold, weights in loss (currently not used in the PresGNN)
+[True,1,[0.9,0.9]] #is_multi_training， num_multi_training， multi_training_weight (list size same as the num_multi_training)
+[False]   #is_range_well_loss (currently not used in the PresGNN)
+[True, 1] #is_prev_features_new, num_prev_features_new
+[1350] # number of epochs: 30, 300, 600, 1000 ...
+[1350,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] # num_epochs_loaded (the dim should equal to combinations of configs)
+['python_resnet_middle_dataset_mass_flux_stage1_trial1_No.'] #model_name_base: location to save the model
+['large'] #load dataloader for training ('small' or 'large')
+[1,1,1] #batch_size_train_val_test: last one (test) should always be 1
+[True] #is_load_opt
+[True] # is_mass_flux
+[0.3] # first_step_loss_weight
