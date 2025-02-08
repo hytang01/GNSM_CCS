@@ -24,18 +24,15 @@ import copy
 
 import sys
 import feval_helper as helper
-sys.path.append('/home/groups/lou/hytang/SIMGNN_Modularization')
-from Data_Processing import Build_Graph_Dataset_Validation_3D_Eclipse_no_mass_irregular_time as Build_Graph_Dataset
-from Model import Model_new as Model
-from Model import Training_satGNN_ccus_no_mass as Training
-from Visualization import Rate_Curve_Visualization
+import Build_Graph_Dataset_Validation_3D_Eclipse_no_mass_irregular_time as Build_Graph_Dataset
+import Model_new as Model
 
 def main(argv):
     infile = sys.argv[1] # decision variables each variable is own line
     outfile = sys.argv[2] # OBJ and constraints
     
     # step 1. load saturation gnn model
-    satfile = '/home/groups/lou/hytang/SIMGNN_3d_structured_ccus_Illinois_final_no_pss/python_training_satgnn/python_resnet_small_dataset_satgnn_mass_flux_stage1_trial4_input.txt'
+    satfile = '/python_resnet_small_dataset_satgnn_mass_flux_stage1_trial4_input.txt'
 
     with open(satfile) as f:
         mainlist = [list(literal_eval(line)) for line in f]
@@ -80,10 +77,10 @@ def main(argv):
     is_prev_features = False#False
     num_prev_features = 1
     ##################################
-    oak_address = '/oak/stanford/schools/ees/smart_fields/hytang/simulation_database/'
+    oak_address = os.getcwd()
     # load dynamic data for each simulation run
-    root = oak_address + '3d_Eclipse_model/dataset_Illinois_model_10x2years_1mton_yr_no_pss/' #dataset_SPEJ_model_b_10x3years_inj_30x1years_shut
-    raw_dir = root + 'raw'
+    root = os.getcwd()
+    raw_dir = root #+ 'raw'
 
     # generate connectivity list
     grids = [82,82,20]
@@ -261,7 +258,7 @@ def main(argv):
                                                 sat_model_list.append(load_model)    
 
     # step 2. load pressure gnn model
-    presfile = '/home/groups/lou/hytang/SIMGNN_3d_structured_ccus_Illinois_final_no_pss/python_training_presgnn/python_resnet_middle_dataset_mass_flux_stage1_trial1_input.txt'
+    presfile = '/python_resnet_middle_dataset_mass_flux_stage1_trial1_input.txt'
 
     with open(presfile) as f:
         mainlist = [list(literal_eval(line)) for line in f]
